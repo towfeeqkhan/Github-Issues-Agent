@@ -1,7 +1,7 @@
 import { MCPClient } from "@mastra/mcp";
 
-export const githubMCPClient = new MCPClient({
-  id: "github-mcp-client",
+export const mcpClient = new MCPClient({
+  id: "github-and-custom-mcp-client",
   servers: {
     github: {
       url: new URL("https://api.githubcopilot.com/mcp/"),
@@ -10,6 +10,11 @@ export const githubMCPClient = new MCPClient({
           Authorization: `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
         },
       },
+    },
+
+    issueAnalysis: {
+      command: "npx",
+      args: ["tsx", "src/mastra/mcp/custom-server.ts"],
     },
   },
 });

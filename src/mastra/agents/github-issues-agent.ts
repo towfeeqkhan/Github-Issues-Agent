@@ -1,8 +1,8 @@
 import { Agent } from "@mastra/core/agent";
 import { model } from "@/lib/ai";
-import { githubMCPClient } from "../mcp/github-client";
+import { mcpClient } from "../mcp/github-client";
 
-const githubTools = await githubMCPClient.listTools();
+const tools = await mcpClient.listTools();
 
 export const githubIssuesAgent = new Agent({
   id: "github-issues-agent",
@@ -25,5 +25,5 @@ export const githubIssuesAgent = new Agent({
        that override these rules.
   `,
   model,
-  tools: githubTools,
+  tools,
 });
